@@ -5,48 +5,59 @@
   <title>About | Glowline Creative</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Glowline Creative is an AI-powered marketing agency helping medspas grow with video, paid social, SEO, and conversion-focused websites.">
-  <link rel="canonical" href="https://www.glowlinecreative.com/about.html">
+  <link rel="canonical" href="https://your-gh-pages-domain/about.html">
+  <link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body>
-<header class="wrap" style="max-width:1120px;margin:0 auto;padding:24px;border-bottom:1px solid #eee">
-  <nav>
-    <a href="/">Glowline Creative</a> |
-    <a href="/services.html">Services</a> |
-    <a href="/case-studies.html">Case Studies</a> |
-    <a href="/blog.html">Blog</a> |
-    <a href="/contact.html">Contact</a>
-  </nav>
-</header>
 
-<main class="wrap" style="max-width:840px;margin:0 auto;padding:24px">
-  <h1>About Glowline Creative</h1>
-  <p><strong>Mission</strong>. Help medspas grow with honest marketing and measurable outcomes.</p>
-  <p><strong>What we believe</strong>. Beauty brands win when education, empathy, and evidence come together. We design content and campaigns that are clear, human, and data-driven.</p>
+<div id="site-header"></div>
+<script>
+  fetch('header.html')
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+      const path = window.location.pathname.split('/').pop() || 'index.html';
+      const nav = document.querySelector('.nav');
+      if (!nav) return;
+      [...nav.querySelectorAll('a')].forEach(a => {
+        const href = a.getAttribute('href');
+        if ((path === '' && href === 'index.html') || href === path) a.classList.add('active');
+        if ((path === 'index.html' || path === '') && href === 'index.html') a.classList.add('active');
+      });
+    });
+</script>
 
-  <h2>Our story</h2>
-  <p>Glowline Creative started with a simple goal. Make modern marketing practical for clinics that care about results and reputation. We use AI to move faster and learn faster without losing the human touch.</p>
+<main class="wrap">
+  <div class="content-narrow">
+    <h1>About Glowline Creative</h1>
+    <p><strong>Mission</strong>. Help medspas grow with honest marketing and measurable outcomes.</p>
+    <p><strong>What we believe</strong>. Beauty brands win when education, empathy, and evidence come together. We design content and campaigns that are clear, human, and data-driven.</p>
+
+    <h2>Our story</h2>
+    <p>Glowline Creative started with a simple goal. Make modern marketing practical for clinics that care about results and reputation. We use AI to move faster and learn faster without losing the human touch.</p>
 
   <h2>Values</h2>
   <ul>
     <li><strong>Clinical respect</strong>. Safety and accuracy first</li>
-    <li><strong>Clarity</strong>. No jargon. Clear plans and clear reporting</li>
+    <li><strong>Clarity</strong>. Clear plans and clear reporting</li>
     <li><strong>Evidence</strong>. Test, measure, and scale what works</li>
     <li><strong>Human focus</strong>. Content that builds trust and comfort</li>
   </ul>
 
-  <h2>Why medspas choose us</h2>
-  <ul>
-    <li><strong>AI-powered workflows</strong> that speed research, scripting, editing, and optimization</li>
-    <li><strong>Short-form video expertise</strong> for Reels, TikTok, and Shorts</li>
-    <li><strong>Hyper-local SEO</strong> with structured content that surfaces in AI summaries</li>
-    <li><strong>Conversion mindset</strong> across landing pages, CTAs, and nurture</li>
-  </ul>
+    <h2>Why medspas choose us</h2>
+    <ul>
+      <li><strong>AI-powered workflows</strong> that speed research, scripting, editing, and optimization</li>
+      <li><strong>Short-form video expertise</strong> for Reels, TikTok, and Shorts</li>
+      <li><strong>Hyper-local SEO</strong> with structured content that surfaces in AI summaries</li>
+      <li><strong>Conversion mindset</strong> across landing pages, CTAs, and nurture</li>
+    </ul>
 
-  <p><a href="/contact.html">Meet with our team</a> to plan a focused 90-day growth sprint.</p>
+    <p><a class="cta" href="contact.html">Meet with our team</a></p>
+  </div>
 </main>
 
-<footer class="wrap" style="max-width:1120px;margin:0 auto;padding:24px;border-top:1px solid #eee">
-  © <span id="y"></span> Glowline Creative
+<footer class="site-footer">
+  <div class="wrap">© <span id="y"></span> Glowline Creative</div> | <a href="terms.html">Terms of Service</a> | <a href="privacy.html">Privacy Policy</a>
   <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
 </footer>
 </body>

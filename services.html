@@ -5,26 +5,27 @@
   <title>Services | Glowline Creative</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Services for medspas: paid social, TikTok and Reels, hyper-local SEO, reviews, conversion websites, and automated nurture.">
-  <link rel="canonical" href="https://www.glowlinecreative.com/services.html">
-  <style>
-    body{margin:0;font-family:Inter,Arial,sans-serif;color:#111}
-    .wrap{max-width:1120px;margin:0 auto;padding:24px}
-    .card{border:1px solid #eee;border-radius:14px;padding:20px;margin-bottom:20px}
-    h1,h2{line-height:1.2}
-    ul{padding-left:18px}
-    .tag{display:inline-block;background:#f6f6f6;border:1px solid #e6e6e6;border-radius:999px;padding:4px 10px;font-size:12px;margin-right:8px;margin-bottom:8px}
-  </style>
+  <link rel="canonical" href="https://your-gh-pages-domain/services.html">
+  <link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body>
-<header class="wrap" style="border-bottom:1px solid #eee">
-  <nav>
-    <a href="/">Glowline Creative</a> |
-    <a href="/case-studies.html">Case Studies</a> |
-    <a href="/blog.html">Blog</a> |
-    <a href="/about.html">About</a> |
-    <a href="/contact.html">Contact</a>
-  </nav>
-</header>
+
+<div id="site-header"></div>
+<script>
+  fetch('header.html')
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+      const path = window.location.pathname.split('/').pop() || 'index.html';
+      const nav = document.querySelector('.nav');
+      if (!nav) return;
+      [...nav.querySelectorAll('a')].forEach(a => {
+        const href = a.getAttribute('href');
+        if ((path === '' && href === 'index.html') || href === path) a.classList.add('active');
+        if ((path === 'index.html' || path === '') && href === 'index.html') a.classList.add('active');
+      });
+    });
+</script>
 
 <main class="wrap">
   <h1>Services</h1>
@@ -40,16 +41,14 @@
       <li>Daily pacing checks and weekly optimization</li>
     </ul>
     <div>
-      <span class="tag">Meta Ads</span>
-      <span class="tag">TikTok Ads</span>
-      <span class="tag">Creative testing</span>
-      <span class="tag">Budget optimization</span>
+      <span class="badge">Meta Ads</span><span class="badge">TikTok Ads</span>
+      <span class="badge">Creative testing</span><span class="badge">Budget optimization</span>
     </div>
   </section>
 
   <section id="short-video" class="card">
     <h2>Short-Form Video</h2>
-    <p>Reels, TikToks, and Shorts built on trend research with expert voiceovers and on-screen captions. Formats and lengths align to each platform’s best practices.</p>
+    <p>Reels, TikToks, and Shorts built on trend research with expert voiceovers and on-screen captions. Formats and lengths align to each platform best practice.</p>
     <ul>
       <li>Hook in the first two seconds</li>
       <li>Expert narration that explains benefits and expectations</li>
@@ -57,10 +56,8 @@
       <li>Subtitles for silent viewing</li>
     </ul>
     <div>
-      <span class="tag">Reels</span>
-      <span class="tag">TikTok</span>
-      <span class="tag">YouTube Shorts</span>
-      <span class="tag">UGC and testimonials</span>
+      <span class="badge">Reels</span><span class="badge">TikTok</span>
+      <span class="badge">YouTube Shorts</span><span class="badge">UGC and testimonials</span>
     </div>
   </section>
 
@@ -74,10 +71,8 @@
       <li>Google Business Profile posting and review growth</li>
     </ul>
     <div>
-      <span class="tag">Local SEO</span>
-      <span class="tag">Schema</span>
-      <span class="tag">Content hubs</span>
-      <span class="tag">GMB</span>
+      <span class="badge">Local SEO</span><span class="badge">Schema</span>
+      <span class="badge">Content hubs</span><span class="badge">GMB</span>
     </div>
   </section>
 
@@ -114,11 +109,11 @@
     </ul>
   </section>
 
-  <p>Ready to assemble your program? <a href="/contact.html">Book a strategy session</a>.</p>
+  <p>Ready to assemble your program? <a class="cta" href="contact.html">Book a strategy session</a>.</p>
 </main>
 
-<footer class="wrap" style="border-top:1px solid #eee">
-  © <span id="y"></span> Glowline Creative
+<footer class="site-footer">
+  <div class="wrap">© <span id="y"></span> Glowline Creative</div>
   <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
 </footer>
 </body>
